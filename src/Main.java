@@ -48,7 +48,20 @@ static void goSell(){
 
 //Añadir un Producto
 static void addProduct(){
-    System.out.println("Añadir Producto");
+    System.out.println("-----------------------");
+    System.out.println(" !Ingresa un Producto! ");
+    System.out.println("-----------------------");
+
+   String name = takeInput("Nombre del Producto: ");
+   String brand = takeInput("Marca del Producto: ");
+   int quantity = takeIntInput("Cantidad en Stock: ");
+   int price = takeIntInput("Precio x Unidad: ");
+
+   Product newProduct = new Product(name,brand,quantity,price);
+
+   System.out.println(newProduct);
+
+
 }
 
 //Buscar un Producto
@@ -65,4 +78,18 @@ static void updateProduct(){
 static void optionFailure(){
     System.out.println("Lo ingresado no es una opcion valida, intenta nuevamente.");
     menu();
+}
+
+
+
+static String takeInput(String text){
+    Scanner reader = new Scanner(System.in);
+    System.out.println(text);
+    return reader.next();
+}
+
+static int takeIntInput(String text){
+    Scanner reader = new Scanner(System.in);
+    System.out.println(text);
+    return reader.nextInt();
 }
