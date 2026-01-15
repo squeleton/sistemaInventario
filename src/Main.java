@@ -1,6 +1,7 @@
 import static java.io.Reader.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Main{
@@ -37,7 +38,7 @@ public class Main{
             case "1" -> goInventory(inventory);
             case "2" -> goSell();
             case "3" -> addProduct(inventory);
-            case "4" -> lookProduct();
+            case "4" -> lookProduct(inventory);
             case "5" -> updateProduct();
             default -> optionFailure(inventory);
         }
@@ -47,11 +48,7 @@ public class Main{
     //Ir al inventario
     static void goInventory(List<Product> inventory){
         for(Product p : inventory){
-            System.out.println(p.getId());
-            System.out.println(p.getName());
-            System.out.println(p.getBrand());
-            System.out.println(p.getQuantity());
-            System.out.println(p.getPrice());
+            System.out.println("ID"+ p.getId() + " - Producto: " + p.getName() + " - Stock: " + p.getQuantity() + " - Precio: " + p.getPrice());
         }
         menu(inventory);
     }
@@ -68,7 +65,7 @@ public class Main{
         System.out.println(" !Ingresa un Producto! ");
         System.out.println("-----------------------");
 
-        int id = takeIntInput("Identificador del producto: ");
+        String id = takeInput("Identificador del producto: ");
         String name = takeInput("Nombre del Producto: ");
         String brand = takeInput("Marca del Producto: ");
         int quantity = takeIntInput("Cantidad en Stock: ");
@@ -82,13 +79,23 @@ public class Main{
     }
 
     //Buscar un Producto
-    static void lookProduct(){
-        System.out.println("Datos de un producto por ID");
+    static void lookProduct(List<Product> inventory){
+        String lookedProduct = takeInput("Que producto buscas (ID): ");
+        for(int i = 0; inventory.size() > i; i++){
+            if(Objects.equals(inventory.get(i).getId(), lookedProduct)){
+                Product p = inventory.get(i);
+                System.out.println("ID"+ p.getId() + " - Producto: " + p.getName() + " - Stock: " + p.getQuantity() + " - Precio: " + p.getPrice());
+
+            }else{
+                System.out.println("No se encontro este producto.");
+            }
+            menu(inventory);
+        }
     }
 
     //Actualizar un Producto
     static void updateProduct(){
-        System.out.println("Actualizar un producto (esto incluye eliminarlo pero hay que añadir un justificativo)");
+
     }
 
     //Forma temporal de manejar el misinput

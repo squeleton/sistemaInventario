@@ -1,12 +1,12 @@
 public class Product {
     //Atributos de la clase (expandible)
-    private int id;
+    private String id;
     private String name;
     private String brand;
     private int quantity;
     private int price;
 
-    public Product(int id,String name, String brand, int quantity, int price){
+    public Product(String id,String name, String brand, int quantity, int price){
         this.id = id;
         this.name = name;
         this.brand = brand;
@@ -15,7 +15,7 @@ public class Product {
     }
 
     //Getters
-    public int getId(){
+    public String getId(){
         return this.id;
     }
     public String getName(){
@@ -35,7 +35,7 @@ public class Product {
     }
 
     //Setters
-    public void setId(int id){
+    public void setId(String id){
         this.id = id;
     }
     public void setName(String name){
